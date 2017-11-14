@@ -255,7 +255,6 @@ lazy val scalahostSbt = project
     buildInfoSettings,
     sbt.ScriptedPlugin.scriptedSettings,
     sbtPlugin := true,
-    bintrayRepository := "maven", // sbtPlugin overrides this to sbt-plugins
     testQuick := {
       // runs tests for 2.11 only, avoiding the need to publish for 2.12
       RunSbtCommand(s"; plz $ScalaVersion publishLocal " +
@@ -488,7 +487,6 @@ lazy val mergeSettings = Def.settings(
 
 lazy val publishableSettings = Def.settings(
   sharedSettings,
-  bintrayOrganization := Some("scalameta"),
   publishArtifact.in(Compile) := true,
   publishArtifact.in(Test) := false,
   {
