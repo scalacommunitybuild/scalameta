@@ -45,21 +45,26 @@ class ReflectionSuite extends AstSuite {
     val distinctRelevantFieldTpes = ListBuffer[Type]()
     duplicateRelevantFieldTpes.foreach(tpe => if (!distinctRelevantFieldTpes.exists(_ =:= tpe)) distinctRelevantFieldTpes += tpe)
     assert(distinctRelevantFieldTpes.sortBy(_.toString).mkString(EOL) === """
+      |Any
+      |Boolean
+      |Byte
+      |Char
+      |Int
+      |Long
+      |Option[scala.collection.immutable.Seq[scala.meta.Stat]]
+      |Option[scala.meta.Pat.Type]
+      |Option[scala.meta.Term]
+      |Option[scala.meta.Type.Arg]
+      |Option[scala.meta.Type]
+      |Short
       |String
-      |scala.Any
-      |scala.Boolean
-      |scala.Byte
-      |scala.Char
-      |scala.Int
-      |scala.Long
-      |scala.Option[scala.collection.immutable.Seq[scala.meta.Stat]]
-      |scala.Option[scala.meta.Pat.Type]
-      |scala.Option[scala.meta.Term]
-      |scala.Option[scala.meta.Type.Arg]
-      |scala.Option[scala.meta.Type]
-      |scala.Short
-      |scala.Symbol
-      |scala.Unit
+      |Symbol
+      |Unit
+      |meta.Name.Indeterminate
+      |meta.Name.Qualifier
+      |meta.Type.Bounds
+      |scala.collection.immutable.Seq[meta.Pat.Type]
+      |scala.collection.immutable.Seq[meta.Type.Param]
       |scala.collection.immutable.Seq[scala.collection.immutable.Seq[scala.meta.Term.Arg]]
       |scala.collection.immutable.Seq[scala.collection.immutable.Seq[scala.meta.Term.Param]]
       |scala.collection.immutable.Seq[scala.meta.Case]
@@ -71,7 +76,6 @@ class ReflectionSuite extends AstSuite {
       |scala.collection.immutable.Seq[scala.meta.Mod.Annot]
       |scala.collection.immutable.Seq[scala.meta.Mod]
       |scala.collection.immutable.Seq[scala.meta.Pat.Arg]
-      |scala.collection.immutable.Seq[scala.meta.Pat.Type]
       |scala.collection.immutable.Seq[scala.meta.Pat.Var.Term]
       |scala.collection.immutable.Seq[scala.meta.Pat]
       |scala.collection.immutable.Seq[scala.meta.Stat]
@@ -79,12 +83,9 @@ class ReflectionSuite extends AstSuite {
       |scala.collection.immutable.Seq[scala.meta.Term.Param]
       |scala.collection.immutable.Seq[scala.meta.Term]
       |scala.collection.immutable.Seq[scala.meta.Type.Arg]
-      |scala.collection.immutable.Seq[scala.meta.Type.Param]
       |scala.collection.immutable.Seq[scala.meta.Type]
       |scala.meta.Ctor.Primary
       |scala.meta.Ctor.Ref.Name
-      |scala.meta.Name.Indeterminate
-      |scala.meta.Name.Qualifier
       |scala.meta.Pat
       |scala.meta.Pat.Arg
       |scala.meta.Pat.Type
@@ -97,7 +98,6 @@ class ReflectionSuite extends AstSuite {
       |scala.meta.Term.Param.Name
       |scala.meta.Term.Ref
       |scala.meta.Type
-      |scala.meta.Type.Bounds
       |scala.meta.Type.Name
       |scala.meta.Type.Param.Name
     """.trim.stripMargin)
