@@ -31,7 +31,8 @@ object CommentOps {
           .dropWhile(scaladocBorderSymbols)
 
       Option(
-        content.lines
+        Predef.augmentString(content)  // work around scala/bug#11125
+          .lines
           .map(_.dropWhile(scaladocSymbols)) // Removes leading comments symbols
           .map(_.trim)
           .mkString("\n")

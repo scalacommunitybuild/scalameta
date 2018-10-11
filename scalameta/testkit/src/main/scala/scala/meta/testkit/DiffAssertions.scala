@@ -13,7 +13,8 @@ trait DiffAssertions extends FunSuiteLike {
     try assertNoDiff(obtained, expected, title)
     catch {
       case ex: Exception =>
-        obtained.lines.toList match {
+        // augmentString = work around scala/bug#11125
+        Predef.augmentString(obtained).lines.toList match {
           case head +: tail =>
             println("    \"\"\"|" + head)
             tail.foreach(line => println("       |" + line))

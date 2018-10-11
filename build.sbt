@@ -110,7 +110,8 @@ lazy val semanticdb = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .in(file("semanticdb/semanticdb"))
   .settings(
     publishableSettings,
-    protobufSettings
+    protobufSettings,
+    libraryDependencies += "javax.xml.bind" % "jaxb-api" % "2.3.0"
   )
   .nativeSettings(nativeSettings)
   .jvmSettings(
