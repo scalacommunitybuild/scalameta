@@ -160,7 +160,7 @@ trait SemanticdbAnalyzer extends NscAnalyzer with ReflectionToolkit {
             if (e.errPos == tree.pos) {
               val header = f"${e.errMsg}%n  Expression does not convert to assignment because:%n    "
               val expansion = f"%n    expansion: ${show(convo)}"
-              NormalTypeError(tree, err.errors.flatMap(_.errMsg.lines.toList).mkString(header, f"%n    ", expansion))
+              NormalTypeError(tree, err.errors.flatMap(e => Predef.augmentString(e.errMsg).lines.toList).mkString(header, f"%n    ", expansion))
             } else e
           }
         def advice2(errors: List[AbsTypeError]): List[AbsTypeError] =
