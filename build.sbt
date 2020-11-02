@@ -12,6 +12,9 @@ import sbt.ScriptedPlugin._
 import complete.DefaultParsers._
 import scalapb.compiler.Version.scalapbVersion
 
+resolvers in Global += "scala-integration" at
+  "https://scala-ci.typesafe.com/artifactory/scala-integration/"
+
 lazy val LanguageVersions = Seq(LatestScala212, LatestScala211)
 lazy val LanguageVersion = LanguageVersions.head
 
@@ -671,7 +674,7 @@ lazy val sharedSettings = Def.settings(
   scalaVersion := LanguageVersion,
   crossScalaVersions := LanguageVersions,
   organization := "org.scalameta",
-  addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full),
+  addCompilerPlugin("org.scalamacros" % "paradise_2.12.6" % "2.1.0"),
   scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked"),
   scalacOptions.in(Compile, doc) ++= Seq("-skip-packages", ""),
   scalacOptions.in(Compile, doc) ++= Seq("-implicits", "-implicits-hide:."),
@@ -865,7 +868,7 @@ lazy val fullCrossVersionSettings = Seq(
     // not "scala_2.11.8" or "scala_2.12.1" that we need.
     // That's why we have to work around here.
     val base = sourceDirectory.in(Compile).value
-    base / ("scala-" + scalaVersion.value)
+    base / "scala-2.12.6"
   }
 )
 
