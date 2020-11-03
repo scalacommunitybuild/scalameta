@@ -679,7 +679,6 @@ lazy val sharedSettings = Def.settings(
   scalacOptions.in(Compile, doc) ++= Seq("-skip-packages", ""),
   scalacOptions.in(Compile, doc) ++= Seq("-implicits", "-implicits-hide:."),
   scalacOptions.in(Compile, doc) ++= Seq("-groups"),
-  scalacOptions ++= Seq("-Xfatal-warnings"),
   parallelExecution.in(Test) := false, // hello, reflection sync!!
   logBuffered := false,
   updateOptions := updateOptions.value.withCachedResolution(true),
