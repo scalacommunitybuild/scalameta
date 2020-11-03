@@ -18,4 +18,7 @@ class SemanticdbReporter(underlying: Reporter) extends StoreReporter {
       case _ =>
     }
   }
+
+  override def hasErrors: Boolean   = underlying.hasErrors
+  override def hasWarnings: Boolean = underlying.hasWarnings
 }

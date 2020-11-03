@@ -127,6 +127,7 @@ lazy val semanticdbJVM = semanticdb.jvm
 lazy val semanticdbJS = semanticdb.js
 lazy val semanticdbNative = semanticdb.native
 
+val BinCompatV = """(\d+)\.(\d+)\.(\d+)(-\w+)??-bin(-.*)?""".r
 lazy val semanticdbScalacCore = project
   .in(file("semanticdb/scalac/library"))
   .settings(
@@ -134,7 +135,14 @@ lazy val semanticdbScalacCore = project
     fullCrossVersionSettings,
     moduleName := "semanticdb-scalac-core",
     description := "Library to generate SemanticDB from Scalac 2.x internal data structures",
-    libraryDependencies += "org.scala-lang" % "scala-compiler" % scalaVersion.value
+    libraryDependencies += "org.scala-lang" % "scala-compiler" % scalaVersion.value,
+    unmanagedSourceDirectories in Compile += {
+      val dir = (sourceDirectory in Compile).value
+      scalaVersion.value match {
+        case BinCompatV("2", "12", z, _, _) if z >= "13" => dir / "scala-2.12.13+"
+        case other                                       => dir / "scala-2.12.12-"
+      }
+    }
   )
   .dependsOn(scalametaJVM, metacp)
 
