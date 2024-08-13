@@ -1,5 +1,5 @@
 import org.scalajs.linker.interface.StandardConfig
-import java.io._
+import java.io.{IO => _, _}
 import scala.xml.{Node => XmlNode, NodeSeq => XmlNodeSeq, _}
 import scala.xml.transform.{RewriteRule, RuleTransformer}
 import org.scalajs.sbtplugin.ScalaJSCrossVersion
