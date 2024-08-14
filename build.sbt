@@ -1,4 +1,3 @@
-import java.io.{IO => _, _}
 import scala.util.Try
 import scala.xml.{Node => XmlNode, NodeSeq => XmlNodeSeq, _}
 import scala.xml.transform.{RewriteRule, RuleTransformer}
